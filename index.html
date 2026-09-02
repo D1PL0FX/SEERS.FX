@@ -25,6 +25,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body { background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-family); line-height: 1.6; overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
 
@@ -219,7 +220,7 @@
     </div>
   </section>
 
-  <!-- 3. SOFTWARE (TESTI AGGIORNATI) -->
+  <!-- 3. SOFTWARE -->
   <section id="software" class="section">
     <div class="container">
       <h2 class="section-title">OUR SOFTWARE</h2>
@@ -249,7 +250,7 @@
             <h3>XAURUS</h3>
             <p>Progettato per operare esclusivamente in fasce orarie strategiche e interfacciato in tempo reale con il calendario economico. Il sistema blocca automaticamente le entrate prima, durante e dopo i rilasci di notizie ad alto impatto, eliminando alla radice gli Stop Loss inutili causati da spike e volatilità incontrollata.</p>
           </div>
-          <a href="#xaus-detail" class="btn btn-secondary" style="font-size: 0.85rem;">SCOPRI XAURUS &rarr;</a>
+          <a href="#xaurus-detail" class="btn btn-secondary" style="font-size: 0.85rem;">SCOPRI XAURUS &rarr;</a>
         </div>
 
         <!-- CARD AUDCAD_LONGTERM -->
@@ -262,7 +263,7 @@
             <h3>AUDCAD_LONGTERM</h3>
             <p>Modellato per il lungo periodo, costruito per la costanza. Questo EA rinuncia alla fretta del breve termine per concentrarsi su profitti continui e stabili: un approccio dove sono gli anni, accumulando risultati, a fare la vera differenza.</p>
           </div>
-          <a href="#xaus-detail" class="btn btn-secondary" style="font-size: 0.85rem;">SCOPRI AUDCAD &rarr;</a>
+          <a href="#audcad-detail" class="btn btn-secondary" style="font-size: 0.85rem;">SCOPRI AUDCAD &rarr;</a>
         </div>
 
         <!-- CARD BTC2THEMOON -->
@@ -275,11 +276,13 @@
             <h3>BTC2THEMOON</h3>
             <p>Un algoritmo di breakout progettato per catturare le grandi fasi di espansione di Bitcoin. Il sistema dà il meglio di sé durante i trend direzionali più violenti, accettando fisiologici riassorbimenti di profitto nelle fasi di accumulazione.</p>
           </div>
-          <a href="#xaus-detail" class="btn btn-secondary" style="font-size: 0.85rem;">SCOPRI BTC2THEMOON &rarr;</a>
+          <a href="#btc-detail" class="btn btn-secondary" style="font-size: 0.85rem;">SCOPRI BTC2THEMOON &rarr;</a>
         </div>
       </div>
 
-      <!-- 4. SCHEDA TECNICA SOFTWARE (ESEMPIO XAUS) -->
+      <!-- 4. SCHEDE TECNICHE SOFTWARE -->
+
+      <!-- SCHEDA XAUS -->
       <div id="xaus-detail" class="tech-specs">
         <h2 style="font-size: 1.8rem; margin-bottom: 6px;">XAUS</h2>
         <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;">XAUUSD ALGORITHMIC SYSTEM</div>
@@ -310,7 +313,6 @@
           </div>
         </div>
 
-        <!-- BACKTEST RESULTS -->
         <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color);">
           <h3 style="font-size: 1.3rem; margin-bottom: 20px;">BACKTEST RESULTS</h3>
           
@@ -335,6 +337,175 @@
           </div>
         </div>
       </div>
+
+      <!-- SCHEDA XAURUS -->
+      <div id="xaurus-detail" class="tech-specs">
+        <h2 style="font-size: 1.8rem; margin-bottom: 6px;">XAURUS</h2>
+        <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;">ADVANCED GOLD SYSTEM</div>
+        
+        <div class="spec-grid">
+          <div>
+            <h4 style="margin-bottom: 12px;">Overview & Technology</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
+              XAURUS è stato progettato per operare esclusivamente in fasce orarie strategiche sul mercato dell'oro, interfacciandosi in tempo reale con il calendario economico.
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Attraverso il blocco automatico prima, durante e dopo i rilasci di notizie ad alto impatto, elimina le perdite inutili causate da spike estremi e volatilità incontrollata.
+            </p>
+
+            <div class="backtest-img-container">
+              <img src="grafico-xaurus.png" alt="Report Backtest XAURUS">
+            </div>
+          </div>
+
+          <div>
+            <h4 style="margin-bottom: 12px;">Caratteristiche Tecniche</h4>
+            <div class="spec-item"><span class="label">Mercato</span><span class="value">XAUUSD</span></div>
+            <div class="spec-item"><span class="label">Approccio</span><span class="value">News Filtered & Time Windows</span></div>
+            <div class="spec-item"><span class="label">Timeframe</span><span class="value">M15 / M30</span></div>
+            <div class="spec-item"><span class="label">Gestione del Rischio</span><span class="value">News Shield & Hard SL</span></div>
+            <div class="spec-item"><span class="label">Platform</span><span class="value">MetaTrader 5</span></div>
+            <div class="spec-item"><span class="label">Operatività</span><span class="value">100% Automatico</span></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color);">
+          <h3 style="font-size: 1.3rem; margin-bottom: 20px;">BACKTEST RESULTS</h3>
+          
+          <div class="metrics-grid">
+            <div class="metric-card"><div class="metric-lbl">Profit Factor</div><div class="metric-val">1.92</div></div>
+            <div class="metric-card"><div class="metric-lbl">Max Drawdown</div><div class="metric-val" style="color: #ff5252;">7.2%</div></div>
+            <div class="metric-card"><div class="metric-lbl">Win Rate</div><div class="metric-val">68.5%</div></div>
+            <div class="metric-card"><div class="metric-lbl">Net Profit</div><div class="metric-val">+51.3%</div></div>
+          </div>
+
+          <div class="spec-grid" style="font-size: 0.85rem; color: var(--text-muted);">
+            <div>
+              <p>• <strong>Periodo test:</strong> Jan 2021 - Dec 2025</p>
+              <p>• <strong>Capitale iniziale:</strong> $10,000</p>
+              <p>• <strong>Number of Trades:</strong> 980</p>
+            </div>
+            <div>
+              <p>• <strong>Broker/Data:</strong> Tick Data Suite (99.9%)</p>
+              <p>• <strong>Spread / Commissioni:</strong> Reali variabili</p>
+              <p>• <strong>Modello Tick:</strong> Every tick based on real ticks</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCHEDA AUDCAD_LONGTERM -->
+      <div id="audcad-detail" class="tech-specs">
+        <h2 style="font-size: 1.8rem; margin-bottom: 6px;">AUDCAD_LONGTERM</h2>
+        <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;">LONG-TERM TRADING SYSTEM</div>
+        
+        <div class="spec-grid">
+          <div>
+            <h4 style="margin-bottom: 12px;">Overview & Technology</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
+              Modellato per il lungo periodo e costruito per la costanza. Questo EA rinuncia alla frenesia del breve termine per concentrarsi sulla costruzione di profitti stabili nel tempo.
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Sfrutta la struttura correlativa e di rango di AUDCAD per massimizzare la regolarità delle prestazioni con un esposizione controllata.
+            </p>
+
+            <div class="backtest-img-container">
+              <img src="grafico-audcad.png" alt="Report Backtest AUDCAD">
+            </div>
+          </div>
+
+          <div>
+            <h4 style="margin-bottom: 12px;">Caratteristiche Tecniche</h4>
+            <div class="spec-item"><span class="label">Mercato</span><span class="value">AUDCAD</span></div>
+            <div class="spec-item"><span class="label">Approccio</span><span class="value">Mean Reversion / Long-Term</span></div>
+            <div class="spec-item"><span class="label">Timeframe</span><span class="value">H4 / D1</span></div>
+            <div class="spec-item"><span class="label">Gestione del Rischio</span><span class="value">Conservative Risk allocation</span></div>
+            <div class="spec-item"><span class="label">Platform</span><span class="value">MetaTrader 5</span></div>
+            <div class="spec-item"><span class="label">Operatività</span><span class="value">100% Automatico</span></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color);">
+          <h3 style="font-size: 1.3rem; margin-bottom: 20px;">BACKTEST RESULTS</h3>
+          
+          <div class="metrics-grid">
+            <div class="metric-card"><div class="metric-lbl">Profit Factor</div><div class="metric-val">1.71</div></div>
+            <div class="metric-card"><div class="metric-lbl">Max Drawdown</div><div class="metric-val" style="color: #ff5252;">6.1%</div></div>
+            <div class="metric-card"><div class="metric-lbl">Win Rate</div><div class="metric-val">71.0%</div></div>
+            <div class="metric-card"><div class="metric-lbl">Net Profit</div><div class="metric-val">+38.5%</div></div>
+          </div>
+
+          <div class="spec-grid" style="font-size: 0.85rem; color: var(--text-muted);">
+            <div>
+              <p>• <strong>Periodo test:</strong> Jan 2020 - Dec 2025</p>
+              <p>• <strong>Capitale iniziale:</strong> $10,000</p>
+              <p>• <strong>Number of Trades:</strong> 640</p>
+            </div>
+            <div>
+              <p>• <strong>Broker/Data:</strong> Tick Data Suite (99.9%)</p>
+              <p>• <strong>Spread / Commissioni:</strong> Reali variabili</p>
+              <p>• <strong>Modello Tick:</strong> Every tick based on real ticks</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCHEDA BTC2THEMOON -->
+      <div id="btc-detail" class="tech-specs">
+        <h2 style="font-size: 1.8rem; margin-bottom: 6px;">BTC2THEMOON</h2>
+        <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;">BITCOIN ALGORITHMIC SYSTEM</div>
+        
+        <div class="spec-grid">
+          <div>
+            <h4 style="margin-bottom: 12px;">Overview & Technology</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
+              Algoritmo di breakout progettato specificamente per intercettare le grandi fasi di espansione e le accelerazioni direzionali di Bitcoin.
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Esegue entrate tempestive sui breakout di struttura ed è ottimizzato per catturare i trend più violenti, minimizzando i finti segnali nelle fasi laterali.
+            </p>
+
+            <div class="backtest-img-container">
+              <img src="grafico-btc.png" alt="Report Backtest BTC2THEMOON">
+            </div>
+          </div>
+
+          <div>
+            <h4 style="margin-bottom: 12px;">Caratteristiche Tecniche</h4>
+            <div class="spec-item"><span class="label">Mercato</span><span class="value">BTCUSD / BTCUSDT</span></div>
+            <div class="spec-item"><span class="label">Approccio</span><span class="value">Volatility Breakout</span></div>
+            <div class="spec-item"><span class="label">Timeframe</span><span class="value">H1</span></div>
+            <div class="spec-item"><span class="label">Gestione del Rischio</span><span class="value">ATR Adaptive Stop & Trailing</span></div>
+            <div class="spec-item"><span class="label">Platform</span><span class="value">MetaTrader 5</span></div>
+            <div class="spec-item"><span class="label">Operatività</span><span class="value">100% Automatico</span></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color);">
+          <h3 style="font-size: 1.3rem; margin-bottom: 20px;">BACKTEST RESULTS</h3>
+          
+          <div class="metrics-grid">
+            <div class="metric-card"><div class="metric-lbl">Profit Factor</div><div class="metric-val">2.10</div></div>
+            <div class="metric-card"><div class="metric-lbl">Max Drawdown</div><div class="metric-val" style="color: #ff5252;">11.5%</div></div>
+            <div class="metric-card"><div class="metric-lbl">Win Rate</div><div class="metric-val">55.4%</div></div>
+            <div class="metric-card"><div class="metric-lbl">Net Profit</div><div class="metric-val">+89.2%</div></div>
+          </div>
+
+          <div class="spec-grid" style="font-size: 0.85rem; color: var(--text-muted);">
+            <div>
+              <p>• <strong>Periodo test:</strong> Jan 2022 - Dec 2025</p>
+              <p>• <strong>Capitale iniziale:</strong> $10,000</p>
+              <p>• <strong>Number of Trades:</strong> 510</p>
+            </div>
+            <div>
+              <p>• <strong>Broker/Data:</strong> Real Crypto Data Feed</p>
+              <p>• <strong>Spread / Commissioni:</strong> Reali variabili</p>
+              <p>• <strong>Modello Tick:</strong> Every tick based on real ticks</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
