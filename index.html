@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SEERS.FX | Trading Technology & Systematic Strategies</title>
   
-  <!-- Font Google & Chart.js per grafici interattivi -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -138,10 +137,8 @@
 </head>
 <body>
 
-  <!-- CANVAS PER ANIMAZIONE GRAFICO SULLO SFONDO -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="container" style="display: flex; justify-content: space-between; width: 100%;">
       <a href="#" class="logo">SEERS<span>.FX</span></a>
@@ -157,7 +154,6 @@
     </div>
   </nav>
 
-  <!-- 1. HOME -->
   <header class="hero">
     <div class="container">
       <div class="hero-welcome">Benvenuto/a nel sito ufficiale di SEERS.FX</div>
@@ -173,7 +169,6 @@
     </div>
   </header>
 
-  <!-- 2. IL NOSTRO APPROCCIO -->
   <section id="approccio" class="section">
     <div class="container">
       <div class="approach-box">
@@ -191,17 +186,15 @@
     </div>
   </section>
 
-  <!-- 3. SOFTWARE -->
   <section id="software" class="section">
     <div class="container">
       <h2 class="section-title">OUR SOFTWARE</h2>
       <p class="section-subtitle">Sistemi algoritmici sviluppati da SEERS.FX per differenti mercati, strumenti e condizioni operative.</p>
       
-      <!-- SEZIONE CARD SOFTWARE CON IMMAGINI INTEGRATE -->
       <div class="software-grid">
         <div class="card">
           <div>
-            <img src="logo-xaus.png" alt="XAUS" style="width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 16px; border: 1px solid var(--border-color);">
+            <img src="logo-xaus.png" alt="XAUS" style="width: 100%; height: 180px; object-fit: contain; background: #080a0f; border-radius: 6px; margin-bottom: 16px; border: 1px solid var(--border-color);">
             <div class="card-tag">Gold Trading System</div>
             <h3>XAUS</h3>
             <p>Sistema algoritmico sviluppato per operare su XAUUSD attraverso una metodologia strutturata di analisi e gestione dell'operatività.</p>
@@ -211,7 +204,7 @@
 
         <div class="card">
           <div>
-            <img src="logo-xaurus.png" alt="XAURUS" style="width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 16px; border: 1px solid var(--border-color);">
+            <img src="logo-xaurus.png" alt="XAURUS" style="width: 100%; height: 180px; object-fit: contain; background: #080a0f; border-radius: 6px; margin-bottom: 16px; border: 1px solid var(--border-color);">
             <div class="card-tag">Advanced Gold System</div>
             <h3>XAURUS</h3>
             <p>Sistema dedicato al mercato dell'oro, progettato con una logica quantitativa e regole operative predefinite.</p>
@@ -221,7 +214,7 @@
 
         <div class="card">
           <div>
-            <img src="logo-audcad.png" alt="AUDCAD" style="width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 16px; border: 1px solid var(--border-color);">
+            <img src="logo-audcad.png" alt="AUDCAD" style="width: 100%; height: 180px; object-fit: contain; background: #080a0f; border-radius: 6px; margin-bottom: 16px; border: 1px solid var(--border-color);">
             <div class="card-tag">Long-Term Trading System</div>
             <h3>AUDCAD_LONGTERM</h3>
             <p>Sistema progettato per un'operatività di medio/lungo periodo su AUDCAD, con una logica orientata alla selezione delle condizioni di mercato.</p>
@@ -231,16 +224,15 @@
 
         <div class="card">
           <div>
-            <img src="logo-btc.png" alt="BTC2THEMOON" style="width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 16px; border: 1px solid var(--border-color);">
+            <img src="logo-btc.png" alt="BTC2THEMOON" style="width: 100%; height: 180px; object-fit: contain; background: #080a0f; border-radius: 6px; margin-bottom: 16px; border: 1px solid var(--border-color);">
             <div class="card-tag">Bitcoin Algorithmic System</div>
             <h3>BTC2THEMOON</h3>
-            <p>Sistema algoritmico dedicato a Bitcoin, sviluppato per affrontare le caratteristiche di un mercato altamente volatile.</p>
+            <p>Sistema algoritmico dedicato a Bitcoin, sviluppato per affrontare le caratteristiche di un mercato highly volatile.</p>
           </div>
           <a href="#xaus-detail" class="btn btn-secondary" style="font-size: 0.85rem;">SCOPRI BTC2THEMOON &rarr;</a>
         </div>
       </div>
 
-      <!-- 4. SCHEDA TECNICA SOFTWARE (ESEMPIO XAUS) -->
       <div id="xaus-detail" class="tech-specs">
         <h2 style="font-size: 1.8rem; margin-bottom: 6px;">XAUS</h2>
         <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;">XAUUSD ALGORITHMIC SYSTEM</div>
@@ -255,7 +247,6 @@
               Il sistema combina filtri di mercato, condizioni di volatilità, regole di ingresso e gestione automatizzata delle posizioni.
             </p>
 
-            <!-- IMMAGINE DEL BACKTEST / REPORT DI XAUS -->
             <img src="grafico-xaus.png" alt="Report Backtest XAUS" class="backtest-img">
           </div>
 
@@ -270,7 +261,6 @@
           </div>
         </div>
 
-        <!-- BACKTEST RESULTS -->
         <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color);">
           <h3 style="font-size: 1.3rem; margin-bottom: 20px;">BACKTEST RESULTS</h3>
           
@@ -298,7 +288,6 @@
     </div>
   </section>
 
-  <!-- 5. HOW IT WORKS -->
   <section id="how-it-works" class="section">
     <div class="container">
       <h2 class="section-title">FROM STRATEGY TO ALGORITHM</h2>
@@ -329,7 +318,6 @@
     </div>
   </section>
 
-  <!-- 6. CHI SIAMO -->
   <section id="chi-siamo" class="section">
     <div class="container">
       <h2 class="section-title">WHO IS SEERS.FX</h2>
@@ -337,7 +325,6 @@
       
       <div class="team-grid">
         <div class="team-card">
-          <!-- FOTO PROFILO MANUEL -->
           <img src="foto-manuel.jpg" alt="Manuel - SEERS.FX" class="profile-img">
           <h3>Manuel</h3>
           <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 12px;">Co-Founder / Trading & Strategy Development</div>
@@ -347,7 +334,6 @@
         </div>
 
         <div class="team-card">
-          <!-- FOTO PROFILO MARCO -->
           <img src="foto-marco.jpg" alt="Marco - SEERS.FX" class="profile-img">
           <h3>Marco</h3>
           <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 12px;">Co-Founder / Trading & Technology</div>
@@ -359,13 +345,11 @@
     </div>
   </section>
 
-  <!-- 7. PERFORMANCE -->
   <section id="performance" class="section">
     <div class="container">
       <h2 class="section-title">HISTORICAL PERFORMANCE</h2>
       <p class="section-subtitle">Dashboard sintetica e aggregata dei risultati dei nostri modelli di test.</p>
 
-      <!-- Grafico Interattivo Equity Curve -->
       <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 24px; border-radius: 12px; margin-bottom: 32px;">
         <canvas id="equityChart" height="100"></canvas>
       </div>
@@ -385,7 +369,6 @@
     </div>
   </section>
 
-  <!-- 8. FAQ -->
   <section id="faq" class="section">
     <div class="container">
       <h2 class="section-title">DOMANDE FREQUENTI</h2>
@@ -410,7 +393,6 @@
     </div>
   </section>
 
-  <!-- 9. CONTATTI -->
   <section id="contatti" class="section">
     <div class="container" style="text-align: center;">
       <h2 class="section-title">CONTACT SEERS.FX</h2>
@@ -424,13 +406,12 @@
     </div>
   </section>
 
-  <!-- 10. DISCLAIMER & RISK WARNING -->
   <section class="section" style="border-bottom: none;">
     <div class="container">
       <div class="disclaimer-box">
         <h3 style="color: var(--text-main); margin-bottom: 12px; font-size: 0.95rem;">DISCLAIMER & RISK WARNING</h3>
         <p>
-          SEERS.FX non costituisce un servizio di consulenza finanziaria personalizzata. I contenuti, le informazioni, las analisi, i risultati storici, gli esempi e i software presentati sul presente sito sono forniti esclusivamente a scopo informativo e/o tecnologico e non costituiscono, salvo quanto diversamente previsto dalla normativa applicabile, una raccomandazione personalizzata ad acquistare, vendere o detenere specifici strumenti finanziari.<br><br>
+          SEERS.FX non costituisce un servizio di consulenza finanziaria personalizzata. I contenuti, le informazioni, le analisi, i risultati storici, gli esempi e i software presentati sul presente sito sono forniti esclusivamente a scopo informativo e/o tecnologico e non costituiscono, salvo quanto diversamente previsto dalla normativa applicabile, una raccomandazione personalizzata ad acquistare, vendere o detenere specifici strumenti finanziari.<br><br>
           Manuel e Marco non si qualificano come consulenti finanziari abilitati e condividono sul sito la propria esperienza, le proprie metodologie e i propri sistemi di trading. Ogni decisione relativa all'utilizzo dei software, all'apertura di posizioni e all'investimento del proprio capitale viene assunta autonomamente dall’utente, sotto la propria esclusiva responsabilità.<br><br>
           Il trading su strumenti finanziari, inclusi forex, CFD, criptovalute e altri strumenti caratterizzati da elevata volatilità e/o leva finanziaria, comporta un elevato livello di rischio e può determinare la perdita parziale o totale del capitale. Le performance passate, i backtest, le simulazioni e qualsiasi risultato storico non costituiscono garanzia o indicazione dei risultati futuri. Nessun risultato economico è garantito da SEERS.FX, dai suoi fondatori o dai suoi software.<br><br>
           Prima di utilizzare qualsiasi sistema di trading, l'utente dovrebbe valutare autonomamente la propria situazione finanziaria, esperienza, conoscenza dei mercati e capacità di sostenere eventuali perdite e, ove opportuno, rivolgersi a un professionista autorizzato.
@@ -443,7 +424,6 @@
     <div class="container">&copy; 2026 SEERS.FX. All rights reserved.</div>
   </footer>
 
-  <!-- SCRIPT GRAFICO SFONDO & GRAFICO EQUITY -->
   <script>
     // 1. Animazione Canvas di Sfondo (Candlesticks / Dati discreti)
     const canvas = document.getElementById('bg-canvas');
