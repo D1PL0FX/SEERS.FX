@@ -1,1 +1,497 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEERS.FX | Trading Technology & Systematic Strategies</title>
+  
+  <!-- Font Google & Chart.js per grafici interattivi -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+  <style>
+    :root {
+      --bg-dark: #0a0c10;
+      --bg-card: #12161f;
+      --bg-card-hover: #181e2a;
+      --text-main: #f0f4f8;
+      --text-muted: #8b949e;
+      --accent-green: #00e676;
+      --accent-blue: #29b6f6;
+      --border-color: #21262d;
+      --font-family: 'Inter', -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-family); line-height: 1.6; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+
+    /* CANVAS ANIMATO SULLO SFONDO */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 90px 0; border-bottom: 1px solid var(--border-color); }
+    .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .section-subtitle { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 48px; max-width: 750px; }
+
+    /* BOTTONI */
+    .btn { display: inline-block; padding: 12px 28px; font-weight: 600; border-radius: 6px; transition: all 0.2s ease; cursor: pointer; font-size: 0.95rem; }
+    .btn-primary { background: var(--text-main); color: var(--bg-dark); }
+    .btn-primary:hover { background: #ffffff; transform: translateY(-2px); }
+    .btn-secondary { background: transparent; color: var(--text-main); border: 1px solid var(--border-color); }
+    .btn-secondary:hover { background: var(--bg-card); border-color: var(--text-muted); transform: translateY(-2px); }
+
+    /* NAVBAR */
+    .navbar { height: 80px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; background: rgba(10, 12, 16, 0.85); backdrop-filter: blur(12px); z-index: 1000; }
+    .logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 1px; }
+    .logo span { color: var(--accent-green); }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { color: var(--text-muted); font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text-main); }
+
+    /* HERO */
+    .hero { padding: 140px 0 100px; text-align: center; }
+    .hero-welcome { color: var(--accent-green); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    .hero h1 { font-size: 4rem; font-weight: 700; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1.5px; }
+    .hero p.tagline { font-size: 1.25rem; color: var(--text-main); font-weight: 500; max-width: 800px; margin: 0 auto 20px; }
+    .hero p.intro-text { font-size: 1rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; line-height: 1.7; }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; }
+
+    /* APPROCCIO */
+    .approach-box { background: var(--bg-card); border: 1px solid var(--border-color); padding: 48px; border-radius: 12px; }
+    .highlight-quote { font-size: 1.8rem; font-weight: 600; color: var(--accent-green); margin-bottom: 24px; }
+
+    /* CARD SOFTWARE */
+    .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-bottom: 60px; }
+    .card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 32px; border-radius: 12px; transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
+    .card:hover { background: var(--bg-card-hover); border-color: #30363d; transform: translateY(-4px); }
+    .card-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-blue); margin-bottom: 12px; font-weight: 600; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 8px; }
+    .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px; }
+
+    /* SCHEDA TECNICA & BACKTEST */
+    .tech-specs { background: var(--bg-card); border: 1px solid var(--border-color); padding: 40px; border-radius: 12px; margin-top: 40px; }
+    .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .spec-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
+    .spec-item .label { color: var(--text-muted); }
+    .spec-item .value { font-weight: 600; }
+
+    /* IMPOSTAZIONI IMMAGINI GRAFICI E BACKTEST */
+    .backtest-img {
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-top: 20px;
+      display: block;
+      background: #0d1117;
+    }
+
+    /* DASHBOARD METRICHE PERFORMANCE */
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .metric-card { background: var(--bg-dark); border: 1px solid var(--border-color); padding: 20px; border-radius: 8px; text-align: center; }
+    .metric-val { font-size: 1.5rem; font-weight: 700; color: var(--accent-green); margin-top: 4px; }
+    .metric-lbl { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* HOW IT WORKS */
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .step-card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 32px; border-radius: 12px; }
+    .step-num { font-size: 1.8rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 12px; }
+
+    /* CHI SIAMO */
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .team-card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 32px; border-radius: 12px; }
+    .profile-img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border-color);
+      margin-bottom: 20px;
+      background: #1c212e;
+      display: block;
+    }
+
+    /* FAQ & DISCLAIMER */
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); padding: 24px; border-radius: 8px; margin-bottom: 16px; }
+    .disclaimer-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); padding: 32px; border-radius: 8px; font-size: 0.82rem; color: var(--text-muted); line-height: 1.8; }
+
+    footer { padding: 40px 0; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+      .spec-grid, .team-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CANVAS PER ANIMAZIONE GRAFICO SULLO SFONDO -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container" style="display: flex; justify-content: space-between; width: 100%;">
+      <a href="#" class="logo">SEERS<span>.FX</span></a>
+      <ul class="nav-links">
+        <li><a href="#approccio">Approccio</a></li>
+        <li><a href="#software">Software</a></li>
+        <li><a href="#how-it-works">Metodo</a></li>
+        <li><a href="#performance">Performance</a></li>
+        <li><a href="#chi-siamo">Chi Siamo</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 1. HOME -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-welcome">Benvenuto/a nel sito ufficiale di SEERS.FX</div>
+      <h1>SEERS.FX</h1>
+      <p class="tagline">Trading technology. Systematic strategies. Data-driven execution.</p>
+      <p class="intro-text">
+        SEERS.FX nasce dall'esperienza nel trading e dallo sviluppo di sistemi algoritmici progettati per analizzare i mercati e trasformare strategie strutturate in strumenti operativi.
+      </p>
+      <div class="hero-buttons">
+        <a href="#software" class="btn btn-primary">SCOPRI I SOFTWARE</a>
+        <a href="#chi-siamo" class="btn btn-secondary">CHI SIAMO</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. IL NOSTRO APPROCCIO -->
+  <section id="approccio" class="section">
+    <div class="container">
+      <div class="approach-box">
+        <div class="highlight-quote">Per noi il trading non è un gioco. È un'opportunità.</div>
+        <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 20px;">
+          Il trading è un'attività caratterizzata da elevata complessità e rischio. Per SEERS.FX significa soprattutto metodo, disciplina, analisi e sviluppo tecnologico.
+        </p>
+        <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 28px;">
+          Abbiamo scelto di trasformare le nostre esperienze e le nostre strategie in sistemi strutturati, con l'obiettivo di ridurre la componente emotiva e rendere l'operatività il più possibile sistematica.
+        </p>
+        <div style="font-weight: 700; font-size: 1.25rem; color: var(--text-main);">
+          Non promettiamo risultati. Costruiamo strumenti.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SOFTWARE -->
+  <section id="software" class="section">
+    <div class="container">
+      <h2 class="section-title">OUR SOFTWARE</h2>
+      <p class="section-subtitle">Sistemi algoritmici sviluppati da SEERS.FX per differenti mercati, strumenti e condizioni operative.</p>
+      
+      <div class="software-grid">
+        <div class="card">
+          <div>
+            <div class="card-tag">Gold Trading System</div>
+            <h3>XAUS</h3>
+            <p>Sistema algoritmico sviluppato per operare su XAUUSD attraverso una metodologia strutturata di analisi e gestione dell'operatività.</p>
+          </div>
+          <a href="#xaus-detail" class="btn btn-secondary" style="font-size: 0.85rem;">SCOPRI XAUS &rarr;</a>
+        </div>
+
+        <div class="card">
+          <div>
+            <div class="card-tag">Advanced Gold System</div>
+            <h3>XAURUS</h3>
+            <p>Sistema dedicato al mercato dell'oro, progettato con una logica quantitativa e regole operative predefinite.</p>
+          </div>
+          <a href="#xaus-detail" class="btn btn-secondary" style="font-size: 0.85rem;">SCOPRI XAURUS &rarr;</a>
+        </div>
+
+        <div class="card">
+          <div>
+            <div class="card-tag">Long-Term Trading System</div>
+            <h3>AUDCAD_LONGTERM</h3>
+            <p>Sistema progettato per un'operatività di medio/lungo periodo su AUDCAD, con una logica orientata alla selezione delle condizioni di mercato.</p>
+          </div>
+          <a href="#xaus-detail" class="btn btn-secondary" style="font-size: 0.85rem;">SCOPRI AUDCAD &rarr;</a>
+        </div>
+
+        <div class="card">
+          <div>
+            <div class="card-tag">Bitcoin Algorithmic System</div>
+            <h3>BTC2THEMOON</h3>
+            <p>Sistema algoritmico dedicato a Bitcoin, sviluppato per affrontare le caratteristiche di un mercato altamente volatile.</p>
+          </div>
+          <a href="#xaus-detail" class="btn btn-secondary" style="font-size: 0.85rem;">SCOPRI BTC2THEMOON &rarr;</a>
+        </div>
+      </div>
+
+      <!-- 4. SCHEDA TECNICA SOFTWARE (ESEMPIO XAUS) -->
+      <div id="xaus-detail" class="tech-specs">
+        <h2 style="font-size: 1.8rem; margin-bottom: 6px;">XAUS</h2>
+        <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;">XAUUSD ALGORITHMIC SYSTEM</div>
+        
+        <div class="spec-grid">
+          <div>
+            <h4 style="margin-bottom: 12px;">Overview & Technology</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
+              XAUS è un sistema algoritmico sviluppato per il mercato dell'oro (XAUUSD). Il sistema applica regole predefinite per l'identificazione delle condizioni operative e la gestione delle posizioni.
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Il sistema combina filtri di mercato, condizioni di volatilità, regole di ingresso e gestione automatizzata delle posizioni.
+            </p>
+
+            <!-- IMMAGINE DEL BACKTEST / REPORT DI XAUS -->
+            <img src="grafico-xaus.png" alt="Report Backtest XAUS" class="backtest-img">
+          </div>
+
+          <div>
+            <h4 style="margin-bottom: 12px;">Caratteristiche Tecniche</h4>
+            <div class="spec-item"><span class="label">Mercato</span><span class="value">XAUUSD</span></div>
+            <div class="spec-item"><span class="label">Approccio</span><span class="value">Algorithmic Trading</span></div>
+            <div class="spec-item"><span class="label">Timeframe</span><span class="value">H1 / M15</span></div>
+            <div class="spec-item"><span class="label">Gestione del Rischio</span><span class="value">Dynamic SL & Trailing</span></div>
+            <div class="spec-item"><span class="label">Platform</span><span class="value">MetaTrader 5</span></div>
+            <div class="spec-item"><span class="label">Operatività</span><span class="value">100% Automatico</span></div>
+          </div>
+        </div>
+
+        <!-- BACKTEST RESULTS -->
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color);">
+          <h3 style="font-size: 1.3rem; margin-bottom: 20px;">BACKTEST RESULTS</h3>
+          
+          <div class="metrics-grid">
+            <div class="metric-card"><div class="metric-lbl">Profit Factor</div><div class="metric-val">1.85</div></div>
+            <div class="metric-card"><div class="metric-lbl">Max Drawdown</div><div class="metric-val" style="color: #ff5252;">8.4%</div></div>
+            <div class="metric-card"><div class="metric-lbl">Win Rate</div><div class="metric-val">64.2%</div></div>
+            <div class="metric-card"><div class="metric-lbl">Net Profit</div><div class="metric-val">+42.1%</div></div>
+          </div>
+
+          <div class="spec-grid" style="font-size: 0.85rem; color: var(--text-muted);">
+            <div>
+              <p>• <strong>Periodo test:</strong> Jan 2021 - Dec 2025</p>
+              <p>• <strong>Capitale iniziale:</strong> $10,000</p>
+              <p>• <strong>Number of Trades:</strong> 1,240</p>
+            </div>
+            <div>
+              <p>• <strong>Broker/Data:</strong> Tick Data Suite (99.9%)</p>
+              <p>• <strong>Spread / Commissioni:</strong> Reali variabili</p>
+              <p>• <strong>Modello Tick:</strong> Every tick based on real ticks</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. HOW IT WORKS -->
+  <section id="how-it-works" class="section">
+    <div class="container">
+      <h2 class="section-title">FROM STRATEGY TO ALGORITHM</h2>
+      <p class="section-subtitle">Il nostro processo di sviluppo tecnologico in 4 fasi rigorose.</p>
+      
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3>RESEARCH</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">Analisi dei mercati e sviluppo della strategia.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3>DEVELOPMENT</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">Trasformazione delle regole in un sistema algoritmico.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3>BACKTEST</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">Test su dati storici e analisi delle performance.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <h3>EXECUTION</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">Implementazione automatizzata delle regole sul mercato.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CHI SIAMO -->
+  <section id="chi-siamo" class="section">
+    <div class="container">
+      <h2 class="section-title">WHO IS SEERS.FX</h2>
+      <p class="section-subtitle">SEERS.FX nasce dall'incontro tra esperienza nel trading, analisi dei mercati e sviluppo di sistemi algoritmici.</p>
+      
+      <div class="team-grid">
+        <div class="team-card">
+          <!-- FOTO PROFILO MANUEL -->
+          <img src="foto-manuel.jpg" alt="Manuel - SEERS.FX" class="profile-img">
+          <h3>Manuel</h3>
+          <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 12px;">Co-Founder / Trading & Strategy Development</div>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Esperienza consolidata nell'analisi dei mercati finanziari, focalizzato sulla concettualizzazione delle logiche operative e sullo studio delle inefficienze di prezzo.
+          </p>
+        </div>
+
+        <div class="team-card">
+          <!-- FOTO PROFILO MARCO -->
+          <img src="foto-marco.jpg" alt="Marco - SEERS.FX" class="profile-img">
+          <h3>Marco</h3>
+          <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 12px;">Co-Founder / Trading & Technology</div>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Specializzato nello sviluppo software quantitativo, ingegnerizzazione degli algoritmi di esecuzione e ottimizzazione dei sistemi di gestione del rischio.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. PERFORMANCE -->
+  <section id="performance" class="section">
+    <div class="container">
+      <h2 class="section-title">HISTORICAL PERFORMANCE</h2>
+      <p class="section-subtitle">Dashboard sintetica e aggregata dei risultati dei nostri modelli di test.</p>
+
+      <!-- Grafico Interattivo Equity Curve -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 24px; border-radius: 12px; margin-bottom: 32px;">
+        <canvas id="equityChart" height="100"></canvas>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card"><div class="metric-lbl">Net Return</div><div class="metric-val">+68.4%</div></div>
+        <div class="metric-card"><div class="metric-lbl">Max Drawdown</div><div class="metric-val" style="color: #ff5252;">9.1%</div></div>
+        <div class="metric-card"><div class="metric-lbl">Profit Factor</div><div class="metric-val">1.78</div></div>
+        <div class="metric-card"><div class="metric-lbl">Win Rate</div><div class="metric-val">61.8%</div></div>
+        <div class="metric-card"><div class="metric-lbl">Trades</div><div class="metric-val">3,410</div></div>
+        <div class="metric-card"><div class="metric-lbl">Avg Monthly Return</div><div class="metric-val">+2.1%</div></div>
+      </div>
+
+      <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; font-style: italic;">
+        Past performance is not indicative of future results.
+      </p>
+    </div>
+  </section>
+
+  <!-- 8. FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2 class="section-title">DOMANDE FREQUENTI</h2>
+      <p class="section-subtitle">Risposte trasparenti alle principali curiosità sui nostri sistemi.</p>
+      
+      <div class="faq-item">
+        <h4 style="margin-bottom: 8px;">I software garantiscono un profitto?</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">No. Nessun sistema di trading può garantire risultati futuri. Le performance passate non costituiscono garanzia di risultati futuri.</p>
+      </div>
+      <div class="faq-item">
+        <h4 style="margin-bottom: 8px;">Posso utilizzare il software con qualsiasi broker?</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Dipende dal software e dalle condizioni offerte dal broker. Consulta la documentazione specifica del prodotto.</p>
+      </div>
+      <div class="faq-item">
+        <h4 style="margin-bottom: 8px;">Il software elimina il rischio?</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">No. Il trading comporta sempre il rischio di perdita del capitale.</p>
+      </div>
+      <div class="faq-item">
+        <h4 style="margin-bottom: 8px;">SEERS.FX fornisce consulenza finanziaria?</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">SEERS.FX non eroga servizi di consulenza finanziaria personalizzata o sollecitazione all'investimento. Forniamo unicamente strumenti tecnologici e software operativi.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CONTATTI -->
+  <section id="contatti" class="section">
+    <div class="container" style="text-align: center;">
+      <h2 class="section-title">CONTACT SEERS.FX</h2>
+      <p class="section-subtitle" style="margin: 0 auto 32px;">Hai bisogno di maggiori informazioni sui nostri sistemi?</p>
+      
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="mailto:info@seersfx.com" class="btn btn-primary">Email Us</a>
+        <a href="#" class="btn btn-secondary">Telegram</a>
+        <a href="#" class="btn btn-secondary">Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. DISCLAIMER & RISK WARNING -->
+  <section class="section" style="border-bottom: none;">
+    <div class="container">
+      <div class="disclaimer-box">
+        <h3 style="color: var(--text-main); margin-bottom: 12px; font-size: 0.95rem;">DISCLAIMER & RISK WARNING</h3>
+        <p>
+          SEERS.FX non costituisce un servizio di consulenza finanziaria personalizzata. I contenuti, le informazioni, le analisi, i risultati storici, gli esempi e i software presentati sul presente sito sono forniti esclusivamente a scopo informativo e/o tecnologico e non costituiscono, salvo quanto diversamente previsto dalla normativa applicabile, una raccomandazione personalizzata ad acquistare, vendere o detenere specifici strumenti finanziari.<br><br>
+          Manuel e Marco non si qualificano come consulenti finanziari abilitati e condividono sul sito la propria esperienza, le proprie metodologie e i propri sistemi di trading. Ogni decisione relativa all'utilizzo dei software, all'apertura di posizioni e all'investimento del proprio capitale viene assunta autonomamente dall’utente, sotto la propria esclusiva responsabilità.<br><br>
+          Il trading su strumenti finanziari, inclusi forex, CFD, criptovalute e altri strumenti caratterizzati da elevata volatilità e/o leva finanziaria, comporta un elevato livello di rischio e può determinare la perdita parziale o totale del capitale. Le performance passate, i backtest, le simulazioni e qualsiasi risultato storico non costituiscono garanzia o indicazione dei risultati futuri. Nessun risultato economico è garantito da SEERS.FX, dai suoi fondatori o dai suoi software.<br><br>
+          Prima di utilizzare qualsiasi sistema di trading, l'utente dovrebbe valutare autonomamente la propria situazione finanziaria, esperienza, conoscenza dei mercati e capacità di sostenere eventuali perdite e, ove opportuno, rivolgersi a un professionista autorizzato.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">&copy; 2026 SEERS.FX. All rights reserved.</div>
+  </footer>
+
+  <!-- SCRIPT GRAFICO SFONDO & GRAFICO EQUITY -->
+  <script>
+    // 1. Animazione Canvas di Sfondo (Candlesticks / Dati discreti)
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const bars = Array.from({length: 30}, (_, i) => ({
+      x: i * (window.innerWidth / 30),
+      y: Math.random() * window.innerHeight,
+      h: Math.random() * 40 + 10,
+      speed: Math.random() * 0.5 + 0.2
+    }));
+
+    function drawBg() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00e676';
+      bars.forEach(b => {
+        ctx.fillRect(b.x, b.y, 2, b.h);
+        b.y -= b.speed;
+        if (b.y < -50) b.y = canvas.height + 50;
+      });
+      requestAnimationFrame(drawBg);
+    }
+    drawBg();
+
+    // 2. Grafico Interattivo Equity Curve (Chart.js)
+    const chartCtx = document.getElementById('equityChart').getContext('2d');
+    new Chart(chartCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Mar', 'Jun', 'Sep', 'Dec', 'Mar', 'Jun', 'Sep', 'Dec'],
+        datasets: [{
+          label: 'Equity Growth (%)',
+          data: [0, 8, 14, 12, 25, 32, 29, 45, 68.4],
+          borderColor: '#00e676',
+          backgroundColor: 'rgba(0, 230, 118, 0.05)',
+          borderWidth: 2,
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: '#21262d' }, ticks: { color: '#8b949e' } },
+          y: { grid: { color: '#21262d' }, ticks: { color: '#8b949e' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
