@@ -103,7 +103,7 @@
 
     /* SCHEDA TECNICA & BACKTEST */
     .tech-specs { background: var(--bg-card); border: 1px solid var(--border-color); padding: 40px; border-radius: 12px; margin-top: 40px; }
-    .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .spec-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
     .spec-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; }
     .spec-item .label { color: var(--text-muted); }
     .spec-item .value { font-weight: 600; }
@@ -113,11 +113,11 @@
       background: #06080c;
       border: 1px solid var(--border-color);
       border-radius: 8px;
-      margin-top: 24px;
       padding: 12px;
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 220px;
     }
     .backtest-img-container img {
       max-width: 100%;
@@ -284,19 +284,10 @@
 
       <!-- SCHEDA XAUS -->
       <div id="xaus-detail" class="tech-specs">
-        <h2 style="font-size: 1.8rem; margin-bottom: 6px;">XAUS</h2>
-        <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;">XAUUSD ALGORITHMIC SYSTEM</div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 24px;">XAUS</h2>
         
         <div class="spec-grid">
           <div>
-            <h4 style="margin-bottom: 12px;">Overview & Technology</h4>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
-              XAUS è un sistema algoritmico sviluppato per il mercato dell'oro (XAUUSD). Il sistema applica regole predefinite per l'identificazione delle condizioni operative e la gestione delle posizioni.
-            </p>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">
-              Il sistema combina filtri di mercato, condizioni di volatilità, regole di ingresso e gestione automatizzata delle posizioni.
-            </p>
-
             <div class="backtest-img-container">
               <img src="grafico-xaus.png" alt="Report Backtest XAUS">
             </div>
@@ -316,19 +307,10 @@
 
       <!-- SCHEDA XAURUS -->
       <div id="xaurus-detail" class="tech-specs">
-        <h2 style="font-size: 1.8rem; margin-bottom: 6px;">XAURUS</h2>
-        <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;">ADVANCED GOLD SYSTEM</div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 24px;">XAURUS</h2>
         
         <div class="spec-grid">
           <div>
-            <h4 style="margin-bottom: 12px;">Overview & Technology</h4>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
-              XAURUS è stato progettato per operare esclusivamente in fasce orarie strategiche sul mercato dell'oro, interfacciandosi in tempo reale con il calendario economico.
-            </p>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">
-              Attraverso il blocco automatico prima, durante e dopo i rilasci di notizie ad alto impatto, elimina le perdite inutili causate da spike estremi e volatilità incontrollata.
-            </p>
-
             <div class="backtest-img-container">
               <img src="grafico-xaurus.png" alt="Report Backtest XAURUS">
             </div>
@@ -348,19 +330,10 @@
 
       <!-- SCHEDA AUDCAD_LONGTERM -->
       <div id="audcad-detail" class="tech-specs">
-        <h2 style="font-size: 1.8rem; margin-bottom: 6px;">AUDCAD_LONGTERM</h2>
-        <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;">LONG-TERM TRADING SYSTEM</div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 24px;">AUDCAD_LONGTERM</h2>
         
         <div class="spec-grid">
           <div>
-            <h4 style="margin-bottom: 12px;">Overview & Technology</h4>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
-              Modellato per il lungo periodo e costruito per la costanza. Questo EA rinuncia alla frenesia del breve termine per concentrarsi sulla costruzione di profitti stabili nel tempo.
-            </p>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">
-              Sfrutta la struttura correlativa e di rango di AUDCAD per massimizzare la regolarità delle prestazioni con un esposizione controllata.
-            </p>
-
             <div class="backtest-img-container">
               <img src="grafico-audcad.png" alt="Report Backtest AUDCAD">
             </div>
@@ -380,19 +353,10 @@
 
       <!-- SCHEDA BTC2THEMOON -->
       <div id="btc-detail" class="tech-specs">
-        <h2 style="font-size: 1.8rem; margin-bottom: 6px;">BTC2THEMOON</h2>
-        <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;">BITCOIN ALGORITHMIC SYSTEM</div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 24px;">BTC2THEMOON</h2>
         
         <div class="spec-grid">
           <div>
-            <h4 style="margin-bottom: 12px;">Overview & Technology</h4>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
-              Algoritmo di breakout progettato specificamente per intercettare le grandi fasi di espansione e le accelerazioni direzionali di Bitcoin.
-            </p>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">
-              Esegue entrate tempestive sui breakout di struttura ed è ottimizzato per catturare i trend più violenti, minimizzando i finti segnali nelle fasi laterali.
-            </p>
-
             <div class="backtest-img-container">
               <img src="grafico-btc.png" alt="Report Backtest BTC2THEMOON">
             </div>
